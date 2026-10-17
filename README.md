@@ -178,9 +178,11 @@ The benchmark should report the following metrics where available:
 
 The optimality gap for a positive maximization objective is defined as:
 
+
 $$
-\text{Gap}(\%) = 100 \times \frac{R^* - R}{|R^*|}
+\text{Gap}(\%) = 100 \times \frac{R^* - R}{\left|R^*\right|}
 $$
+
 
 where:
 
