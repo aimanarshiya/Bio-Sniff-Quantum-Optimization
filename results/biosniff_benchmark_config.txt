@@ -38,9 +38,22 @@ Processor B edges:
 
 Results generated in this run:
                              processor  classical_optimum_reward  noisy_valid_frequency  noisy_optimal_probability noisy_best_candidates
-       Processor A — 5-candidate study                  1.165737               0.604736                   0.064941             [2, 3, 4]
-       Processor B — 5-candidate study                  1.165737               0.606689                   0.067139             [2, 3, 4]
-Processor B — full 9-candidate problem                  1.452471               0.437988                   0.004639             [1, 6, 8]
+       Processor A — 5-candidate study                  1.165737               0.604492                   0.065186             [2, 3, 4]
+       Processor B — 5-candidate study                  1.165737               0.606445                   0.067139             [2, 3, 4]
+Processor B — full 9-candidate problem                  1.452471               0.438477                   0.004150             [1, 6, 8]
+
+Multi-start initialization summary:
+ seed  expected_qubo_energy  optimizer_success  iterations                                                                termination_message        problem
+   42            -25.046791               True          39        Return from COBYLA because the trust region radius reaches its lower bound. Five-candidate
+   43            -23.636707               True          32        Return from COBYLA because the trust region radius reaches its lower bound. Five-candidate
+   44            -24.249208               True          36        Return from COBYLA because the trust region radius reaches its lower bound. Five-candidate
+   45            -26.500699               True          30        Return from COBYLA because the trust region radius reaches its lower bound. Five-candidate
+   46            -24.829615               True          32        Return from COBYLA because the trust region radius reaches its lower bound. Five-candidate
+   42            -25.558002               True          31        Return from COBYLA because the trust region radius reaches its lower bound. Nine-candidate
+   43            -18.861164               True          26        Return from COBYLA because the trust region radius reaches its lower bound. Nine-candidate
+   44            -14.933177              False          60 Return from COBYLA because the objective function has been evaluated MAXFUN times. Nine-candidate
+   45            -16.292008               True          26        Return from COBYLA because the trust region radius reaches its lower bound. Nine-candidate
+   46            -22.218965               True          28        Return from COBYLA because the trust region radius reaches its lower bound. Nine-candidate
 
 Limitations:
 Synthetic placement inputs; no real-field validation or quantum advantage claimed.
