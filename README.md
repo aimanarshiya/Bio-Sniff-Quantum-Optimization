@@ -175,13 +175,25 @@ The benchmark should report the following metrics where available:
 - Routing overhead and explicit SWAP count, with their definitions stated clearly.
 - Sensitivity to noise and optimization assumptions.
 
-The optimality gap for a positive maximization objective can be expressed as:
 
-$$\operatorname{Gap}(\%)=100\,\frac{R^*-R}{|R^*|}$$
+The optimality gap for a positive maximization objective is defined as:
 
-where $R^*$ is the exact optimum and $R$ is the reward of the solution being evaluated.
+$$
+\text{Gap}(\%) =
+100 \times \frac{R^* - R}{|R^*|}
+$$
 
-The evaluation must distinguish the best sampled solution from the probability of sampling that solution. Finding an optimal bitstring in a small fraction of shots does not imply that most QAOA samples are optimal.
+where:
+
+- $R^*$ is the exact optimal reward obtained through exhaustive classical enumeration.
+- $R$ is the reward of the feasible solution being evaluated.
+
+A gap of $0\%$ indicates that the solution achieves the exact optimum. Larger values indicate a greater deviation from the optimal reward. This definition assumes that $R^* > 0$.
+
+**Solution quality and sampling probability are evaluated separately.** The best sampled solution is the highest-reward feasible solution found among the QAOA measurement shots. The optimal-solution probability is the fraction of all shots that produce an optimal bitstring.
+
+Finding an optimal bitstring in only a small fraction of shots does not imply that most QAOA samples are optimal. Therefore, both the best sampled reward and the optimal-solution probability are reported to provide a more complete evaluation of QAOA performance.
+
 
 ## 8. Installation and Reproducibility
 
