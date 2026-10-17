@@ -326,6 +326,14 @@ Future development will focus on:
 6. Validating the recommended configuration using three physical sensing nodes and appropriate field measurements.
 7. Extending the processor benchmark with additional metrics and appropriately selected classical baselines.
 
+
+## Classical vs Quantum Comparison
+
+Explore our interactive comparison of classical optimization and the QAOA-based quantum optimization approach.
+
+Open the Classical vs Quantum Comparison------>(https://123lasya.github.io/Qiskit_Fall_Fest/)
+      
+
 ## 11. Conclusion
 
 This repository presents a reproducible prototype for investigating QAOA-based sensor-placement optimization in the Bio-Sniff agricultural sensing concept.
