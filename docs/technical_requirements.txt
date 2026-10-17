@@ -1,0 +1,110 @@
+Requirement 1: Pest-Trap or Sensor Inputs
+
+How Bio-Sniff Fulfills This
+
+Three BME688 gas sensors are intended to be installed in a triangular formation across the farm. The nodes collect gas-response patterns and environmental readings. ESP32-based electronics perform node-level acquisition and processing, while an SX1262 radio provides LoRa communication when configured with compatible firmware and a gateway. A master node or gateway can forward combined telemetry to a backend. The farmer-facing interface is intended to present interpreted status and risk information rather than raw sensor numbers alone.
+
+Implementation note: This describes the intended architecture. Report physical deployment, communication tests, calibration, and field performance only when supported by actual evidence.
+
+Technologies / Algorithms / Models Used
+
+BME688 — metal-oxide gas sensing and environmental measurements supported by the sensor configuration.
+
+ESP32 — embedded sensor acquisition, edge processing, and firmware.
+
+SX1262 — LoRa radio transceiver; LoRaWAN operation depends on the selected module, firmware, and gateway.
+
+LoRa/LoRaWAN — low-power wireless communication where implemented.
+
+Wi-Fi (IEEE 802.11) — optional gateway-to-cloud backhaul where implemented.
+
+FastAPI and MySQL — proposed backend/API and persistent storage if included in the working prototype.
+
+Architecture Diagram
+
+BME688 gas sensor + supported environmental readings
+              ↓ I²C
+ESP32 (sensor acquisition and edge processing)
+              ↓ SPI
+SX1262 LoRa radio
+              ↓ LoRa / LoRaWAN (as configured)
+Gateway / Master Node
+              ↓ Wi-Fi / Internet (if configured)
+Bio-Sniff API / Cloud → Database → Farmer Dashboard
+
+Data and Integration Notes
+
+A sensor cycle may contain gas-response samples and environmental fields such as temperature, humidity, and pressure, according to the firmware/data schema.
+
+The current QAOA placement benchmark is separate from live telemetry ingestion; do not imply that QAOA currently controls physical node placement.
+
+Gas-resistance values must not be reported as disease-specific VOC concentrations in ppm or ppb without an appropriate calibration and validation procedure.
+
+
+
+
+Requirement 2 : Quantum Optimization for Sensor Placement
+
+How Bio-Sniff Applies Quantum Computing
+
+The quantum component investigates selecting exactly three sensing locations from nine candidate positions. The synthetic placement objective balances candidate utility, complementarity, and spatial distribution. Current outputs are benchmark results for the defined synthetic model, not validated physical farm placements.
+
+Mathematical Formulation
+
+Binary decision variable:  xᵢ ∈ {0, 1},  i = 1, …, 9
+
+Exactly-three-location constraint:  ∑ᵢ₌₁⁹ xᵢ = 3
+
+Number of feasible selections:  C(9, 3) = 9! / [3!(9 − 3)!] = 84
+
+Weighted objective:  F(x) = 0.60 U(x) + 0.25 C(x) + 0.15 S(x)
+
+QUBO penalty:  E(x) = −F(x) + P(∑ᵢ₌₁⁹ xᵢ − 3)²
+
+Here, U denotes normalized utility, C denotes complementarity, S denotes spatial distribution, and P is the cardinality-penalty coefficient. These weights are experimental choices and require sensitivity analysis.
+
+QAOA Workflow
+
+Encode the binary placement objective as a QUBO and map it to a cost Hamiltonian.
+
+Prepare an initial quantum state and apply parameterized cost and mixer operations.
+
+Use a classical optimizer (COBYLA in the recorded benchmark) to update QAOA parameters.
+
+Measure the circuit to obtain candidate bitstrings and evaluate feasible selections.
+
+Compare QAOA outputs with exact classical enumeration.
+
+Processor A and Processor B
+
+Processor A: five-qubit configuration with coupling edges (0,1), (1,2), (1,3), and (3,4).
+
+Processor B: nine-qubit configuration with coupling edges (0,1), (1,2), (1,6), (2,3), (2,6), (2,5), (3,4), (4,5), (5,6), (6,7), (6,8), and (8,0).
+
+Recorded simulation settings: QAOA depth p = 1; 4,096 shots; seed 42; COBYLA optimizer; single-qubit depolarizing probability 0.001; CX depolarizing probability 0.005; readout bit-flip probability 0.01; transpilation optimization level 1; basis gates rz, sx, x, cx. Verify against the submitted notebook and configuration file before treating these as final.
+
+Quantum Component Dependencies
+
+Qiskit — quantum circuit construction and transpilation.
+
+Qiskit Aer — local circuit simulation and noise-model support.
+
+NumPy and SciPy — numerical operations and classical optimization dependencies.
+
+NetworkX — coupling-graph representation and connectivity analysis.
+
+Pandas — loading and exporting benchmark tables and CSV results.
+
+Matplotlib, Seaborn, and Plotly — visualization if used by the notebooks.
+
+Evaluation and Limitations
+
+Use exhaustive classical evaluation as the exact reference for the nine-candidate, choose-three problem (84 valid combinations).
+
+Report feasible-sample frequency, best feasible reward, mean feasible reward, optimal-bitstring probability, circuit depth, and CX count where available.
+
+A best sampled solution matching the classical optimum does not mean most samples are optimal.
+
+A CX-count difference used as an overhead proxy is not the same as an exact SWAP count.
+
+The current optimization uses synthetic placement inputs and does not establish quantum advantage or a physically validated farm placement.

@@ -1,0 +1,46 @@
+Bio-Sniff QAOA Synthetic Architecture Benchmark
+================================================
+
+Data status:
+Synthetic placement scenarios and scores; not physical field measurements.
+
+Problem:
+Select exactly 3 locations from 9 candidate locations.
+
+Objective weights:
+Utility = 0.60
+Complementarity = 0.25
+Spatial distribution = 0.15
+
+QAOA:
+p = 1
+Shots = 4096
+Random seed = 42
+Optimizer = COBYLA
+Maximum iterations per optimization = 60
+Penalty = 3.0
+
+Noise assumptions:
+Single-qubit depolarizing probability = 0.001
+CX depolarizing probability = 0.005
+Readout bit-flip probability = 0.01
+
+Transpilation:
+Optimization level = 1
+Basis gates = rz, sx, x, cx
+Transpiler random seed = 42
+
+Processor A edges:
+[(0, 1), (1, 2), (1, 3), (3, 4)]
+
+Processor B edges:
+[(0, 1), (1, 2), (1, 6), (2, 3), (2, 6), (2, 5), (3, 4), (4, 5), (5, 6), (6, 7), (6, 8), (8, 0)]
+
+Results generated in this run:
+                             processor  classical_optimum_reward  noisy_valid_frequency  noisy_optimal_probability noisy_best_candidates
+       Processor A — 5-candidate study                  1.165737               0.604736                   0.064941             [2, 3, 4]
+       Processor B — 5-candidate study                  1.165737               0.606689                   0.067139             [2, 3, 4]
+Processor B — full 9-candidate problem                  1.452471               0.437988                   0.004639             [1, 6, 8]
+
+Limitations:
+Synthetic placement inputs; no real-field validation or quantum advantage claimed.

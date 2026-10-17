@@ -1,0 +1,11 @@
+seed,expected_qubo_energy,optimizer_success,iterations,termination_message,problem
+42,-25.04679043341419,True,38,Return from COBYLA because the trust region radius reaches its lower bound.,Five-candidate
+43,-23.636706872057303,True,32,Return from COBYLA because the trust region radius reaches its lower bound.,Five-candidate
+44,-24.24920809475005,True,31,Return from COBYLA because the trust region radius reaches its lower bound.,Five-candidate
+45,-26.50070008048536,True,33,Return from COBYLA because the trust region radius reaches its lower bound.,Five-candidate
+46,-24.829614777444412,True,32,Return from COBYLA because the trust region radius reaches its lower bound.,Five-candidate
+42,-25.55801164671855,True,32,Return from COBYLA because the trust region radius reaches its lower bound.,Nine-candidate
+43,-18.861176348527774,True,29,Return from COBYLA because the trust region radius reaches its lower bound.,Nine-candidate
+44,-14.977365733362555,False,60,Return from COBYLA because the objective function has been evaluated MAXFUN times.,Nine-candidate
+45,-16.292007665010008,True,28,Return from COBYLA because the trust region radius reaches its lower bound.,Nine-candidate
+46,-22.218957185158224,True,49,Return from COBYLA because the trust region radius reaches its lower bound.,Nine-candidate
