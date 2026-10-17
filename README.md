@@ -1,4 +1,5 @@
 # Bio-Sniff: QAOA-Based Quantum Optimization for Agricultural Sensor Placement
+**Concept Preview:** https://drive.google.com/drive/folders/1XgYeFx9xlYUHdKWaoQFtdPd9iqsXFMzJ 
 
 **Project Category:** Quantum Computing / Quantum Optimization  
 **Application Domain:** Smart Agriculture and Early Crop-Disease Monitoring  
